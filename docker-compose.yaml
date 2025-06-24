@@ -4,7 +4,7 @@ services:
 
   frontend:
     container_name: frontend
-    build: ./frontend
+    build: .
     volumes:
       - './:/app'
       - '/app/node_modules'
