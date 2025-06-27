@@ -46,7 +46,7 @@ const FormFile = ({ setLoadData, modalClose, notif }) => {
             return
         }
         const data = new FormData()
-        data.append('Error', file)
+        data.append('file', file)
         let config = {
             "headers": {
                 "content-type": 'multipart/form-data;',

@@ -13,7 +13,7 @@ const ChatGroup = () => {
   const setActiveNavFunc = (title) => {
     setActiveNav(title)
   }
-
+  const navigate = useNavigate()
   const { logout } = UseAuth()
   const doLogout = () => {
     logout()
