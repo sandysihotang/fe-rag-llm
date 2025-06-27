@@ -23,6 +23,8 @@ export const FileProcess = () => {
     const [isNewFileProcess, setIsNewFileProcess] = useState(false)
     const handleOpenModal = () => setShowModal(true)
     const closeModal = () => setShowModal(false)
+    const [apiFileProcess, contextHolderFileProcess] = notification.useNotification();
+
     const fetchData = async () => {
         try {
             const response = await API.get('/api/source', {
@@ -33,7 +35,11 @@ export const FileProcess = () => {
             setDataSource(response.data)
         } catch (e) {
             console.log(e)
-
+            apiFileProcess['error']({
+                message: 'File',
+                description:
+                    JSON.stringify(e.response),
+            })
         }
 
     }
@@ -43,7 +49,7 @@ export const FileProcess = () => {
     }, [isNewFileProcess])
 
     return (
-        <>{contextHolder}
+        <>{contextHolder}{contextHolderFileProcess}
             <div className="chat-section">
                 <div className="chat-header">
                     <div className="user-header"><br /><br />

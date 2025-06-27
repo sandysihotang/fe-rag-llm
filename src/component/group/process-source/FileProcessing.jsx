@@ -26,6 +26,7 @@ const tailLayout = {
 const FormFile = ({ setLoadData, modalClose, notif }) => {
     const [file, setFile] = useState(null)
     const [api, contextHolder] = notification.useNotification();
+
     const beforeUpload = (filedata) => {
         if (filedata.type !== 'application/pdf') {
             message.error('You can only upload JPG/PNG file!');
@@ -66,6 +67,11 @@ const FormFile = ({ setLoadData, modalClose, notif }) => {
             modalClose(false)
         } catch (e) {
             console.log(e)
+            api['error']({
+                message: 'File',
+                description:
+                    JSON.stringify(e.response),
+            })
         }
     }
     return (
@@ -166,6 +172,11 @@ const Scraping = ({ setLoadData, modalClose, notif }) => {
             })
         } catch (e) {
             console.log(e)
+            notifProcessSource['error']({
+                message: 'File',
+                description:
+                    JSON.stringify(e.response),
+            })
         }
 
     }

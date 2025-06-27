@@ -9,6 +9,7 @@ export const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const { login } = UseAuth()
+    const [api, contextHolder] = notification.useNotification();
 
     const navigate = useNavigate()
 
@@ -23,6 +24,11 @@ export const Login = () => {
             navigate('/dashboard')
         } catch (err) {
             console.log(err)
+            api['error']({
+                message: 'File',
+                description:
+                    JSON.stringify(e.response),
+            })
         }
     }
 
@@ -35,6 +41,7 @@ export const Login = () => {
                 <img src="images/logo.svg" alt="" className="main-logo" />
             </div>
         </div>
+        {contextHolder}
         <form className="container" onSubmit={doLogin} >
             <label htmlFor="email"><b>Email</b></label>
             <input type="email" placeholder="Enter Email" value={email} onChange={(e) => setEmail(e.target.value)} required />

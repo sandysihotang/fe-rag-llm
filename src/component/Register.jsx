@@ -6,6 +6,7 @@ export const Register = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const { login } = UseAuth()
+    const [api, contextHolder] = notification.useNotification();
 
     const navigate = useNavigate()
 
@@ -20,6 +21,11 @@ export const Register = () => {
             navigate('/dashboard')
         } catch (err) {
             console.log(err)
+            api['error']({
+                message: 'File',
+                description:
+                    JSON.stringify(e.response),
+            })
         }
     }
 
@@ -32,6 +38,7 @@ export const Register = () => {
                 <img src="images/logo.svg" alt="" className="main-logo" />
             </div>
         </div>
+        {contextHolder}
         <form method="post" onSubmit={register}>
             <div class="container">
                 <label for="uname"><b>Email</b></label>

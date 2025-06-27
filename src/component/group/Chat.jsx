@@ -28,6 +28,8 @@ const Message = (messageData) => {
 export const Chat = () => {
     const [message, setMessage] = useState("")
     const [historyMessage, setHistoryMessage] = useState([])
+    const [apiHistoryMessage, contextHolderHistoryMessage] = notification.useNotification();
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -40,6 +42,11 @@ export const Chat = () => {
                 setHistoryMessage(resp.data)
             } catch (e) {
                 console.log(e.response)
+                apiHistoryMessage['error']({
+                    message: 'File',
+                    description:
+                        JSON.stringify(e.response),
+                })
             }
         }
 
@@ -78,6 +85,11 @@ export const Chat = () => {
             setHistoryMessage(prev => [response.data, ...prev])
         } catch (e) {
             console.log(e)
+            apiHistoryMessage['error']({
+                message: 'File',
+                description:
+                    JSON.stringify(e.response),
+            })
 
         }
     }
@@ -91,6 +103,7 @@ export const Chat = () => {
                 </div>
             </div>
             <div className="all-chat" style={{ overflow: "auto", display: "flex", flexDirection: "column-reverse" }}>
+                {contextHolderHistoryMessage}
                 {historyMessage.map((message, index) => (
                     <Message message={message} key={index} />
                 ))
@@ -102,8 +115,6 @@ export const Chat = () => {
                     <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Enter Message..." />
                     <button type="submit" onClick={sendMessage}><img src={window.location.origin + "/images/icon-send.png"} alt="" className="send-icon" /></button>
                 </div>
-
-
             </div>
 
         </div>
