@@ -22,12 +22,12 @@ export const Login = () => {
             })
             login(response.data.token)
             navigate('/dashboard')
-        } catch (err) {
-            console.log(err)
+        } catch (e) {
+            console.log(e)
             api['error']({
                 message: 'File',
                 description:
-                    JSON.stringify(e.response),
+                    JSON.stringify(e.response.data),
             })
         }
     }

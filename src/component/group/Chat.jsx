@@ -41,11 +41,11 @@ export const Chat = () => {
                 })
                 setHistoryMessage(resp.data)
             } catch (e) {
-                console.log(e.response)
+                console.log(e.response.data)
                 apiHistoryMessage['error']({
                     message: 'File',
                     description:
-                        JSON.stringify(e.response),
+                        JSON.stringify(e.response.data),
                 })
             }
         }
@@ -88,7 +88,7 @@ export const Chat = () => {
             apiHistoryMessage['error']({
                 message: 'File',
                 description:
-                    JSON.stringify(e.response),
+                    JSON.stringify(e.response.data),
             })
 
         }

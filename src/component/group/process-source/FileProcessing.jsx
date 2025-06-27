@@ -70,7 +70,7 @@ const FormFile = ({ setLoadData, modalClose, notif }) => {
             api['error']({
                 message: 'File',
                 description:
-                    JSON.stringify(e.response),
+                    JSON.stringify(e.response.data),
             })
         }
     }
@@ -129,7 +129,10 @@ const Scraping = ({ setLoadData, modalClose, notif }) => {
                 setContent(response.data.data)
             } catch (e) {
                 console.log(e)
-
+                api['error']({
+                    description:
+                        JSON.stringify(e.response.data),
+                })
             }
         }
 
@@ -175,7 +178,7 @@ const Scraping = ({ setLoadData, modalClose, notif }) => {
             notifProcessSource['error']({
                 message: 'File',
                 description:
-                    JSON.stringify(e.response),
+                    JSON.stringify(e.response.data),
             })
         }
 
