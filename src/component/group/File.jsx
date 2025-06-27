@@ -36,7 +36,7 @@ export const FileProcess = () => {
         } catch (e) {
             console.log(e)
             apiFileProcess['error']({
-                message: 'File',
+                message: 'Error',
                 description:
                     JSON.stringify(e.response.data),
             })

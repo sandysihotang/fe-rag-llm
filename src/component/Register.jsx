@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import { UseAuth } from '../router/Auth';
 import { API } from '../external/Axios';
+import { notification } from 'antd';
 export const Register = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -22,7 +23,7 @@ export const Register = () => {
         } catch (e) {
             console.log(e)
             api['error']({
-                message: 'File',
+                message: 'Error',
                 description:
                     JSON.stringify(e.response.data),
             })

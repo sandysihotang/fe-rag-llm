@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { API } from "../../external/Axios";
 import { AuthToken } from "../../router/Auth";
 import { formatDate } from "./File";
+import { notification } from "antd";
 
 
 const Message = (messageData) => {
@@ -43,7 +44,7 @@ export const Chat = () => {
             } catch (e) {
                 console.log(e.response.data)
                 apiHistoryMessage['error']({
-                    message: 'File',
+                    message: 'Error',
                     description:
                         JSON.stringify(e.response.data),
                 })
@@ -86,7 +87,7 @@ export const Chat = () => {
         } catch (e) {
             console.log(e)
             apiHistoryMessage['error']({
-                message: 'File',
+                message: 'Error',
                 description:
                     JSON.stringify(e.response.data),
             })

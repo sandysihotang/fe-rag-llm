@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { API } from "../external/Axios";
 import { UseAuth } from "../router/Auth";
+import { notification } from "antd";
 
 
 export const Login = () => {
@@ -25,7 +26,7 @@ export const Login = () => {
         } catch (e) {
             console.log(e)
             api['error']({
-                message: 'File',
+                message: 'Error',
                 description:
                     JSON.stringify(e.response.data),
             })

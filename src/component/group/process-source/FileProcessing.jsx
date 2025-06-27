@@ -39,14 +39,14 @@ const FormFile = ({ setLoadData, modalClose, notif }) => {
     const handleUpload = async () => {
         if (file === null) {
             api['error']({
-                message: 'File',
+                message: 'Error',
                 description:
                     'File not choosen, Please select file',
             })
             return
         }
         const data = new FormData()
-        data.append('file', file)
+        data.append('Error', file)
         let config = {
             "headers": {
                 "content-type": 'multipart/form-data;',
@@ -56,7 +56,7 @@ const FormFile = ({ setLoadData, modalClose, notif }) => {
         try {
             await API.post('/api/upload', data, config)
             notif['success']({
-                message: 'File',
+                message: 'Error',
                 description:
                     'Success Upload File',
             })
@@ -68,7 +68,7 @@ const FormFile = ({ setLoadData, modalClose, notif }) => {
         } catch (e) {
             console.log(e)
             api['error']({
-                message: 'File',
+                message: 'Error',
                 description:
                     JSON.stringify(e.response.data),
             })
@@ -176,12 +176,11 @@ const Scraping = ({ setLoadData, modalClose, notif }) => {
         } catch (e) {
             console.log(e)
             notifProcessSource['error']({
-                message: 'File',
+                message: 'Error',
                 description:
                     JSON.stringify(e.response.data),
             })
         }
-
     }
     return (
         <>

@@ -15,7 +15,6 @@ const ChatGroup = () => {
   }
 
   const { logout } = UseAuth()
-  const navigate = useNavigate()
   const doLogout = () => {
     logout()
     navigate('/')
