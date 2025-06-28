@@ -20,17 +20,7 @@ const Message = (messageData) => {
             <div className="chat-box">
                 <div className="chat-txt">
                     <h4>Ai Assistant <span>{formatDate(message.create_time)}</span></h4>
-                    <p>{message.messages}</p>
-                    <br />
-                    <ul style={{ listStyleType: "none", color: "white" }}>
-                        {message.reference.map((item, key) =>
-                        (
-                            <li key={key}>
-                                <i> Doc:  {item.source}</i> {item.page != 0 ? <i>Page: {item.page}</i> : <></>}
-                            </li>
-                        )
-                        )}
-                    </ul>
+                    <p dangerouslySetInnerHTML={{ __html: message.messages.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}></p>
                 </div>
             </div>)
     }
