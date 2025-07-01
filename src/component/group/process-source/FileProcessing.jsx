@@ -57,7 +57,7 @@ const FormFile = ({ setLoadData, modalClose, notif }) => {
         try {
             await API.post('/api/upload', data, config)
             notif['success']({
-                message: 'Error',
+                message: 'Success',
                 description:
                     'Success Upload File',
             })
