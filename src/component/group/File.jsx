@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { AuthToken } from "../../router/Auth"
+import { AuthToken, UseAuth } from "../../router/Auth"
 import { API } from "../../external/Axios"
 import { format } from "date-fns";
 import { FileProcessing } from "./process-source/FileProcessing";
@@ -24,6 +24,7 @@ export const FileProcess = () => {
     const handleOpenModal = () => setShowModal(true)
     const closeModal = () => setShowModal(false)
     const [api, contextHolder] = notification.useNotification();
+    const { logout } = UseAuth()
 
     const fetchData = async () => {
         try {
@@ -40,6 +41,9 @@ export const FileProcess = () => {
                 description:
                     JSON.stringify(e.response.data),
             })
+            if (e.status == 400) {
+                logout()
+            }
         }
 
     }

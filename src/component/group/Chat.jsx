@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { API } from "../../external/Axios";
-import { AuthToken } from "../../router/Auth";
+import { AuthToken, UseAuth } from "../../router/Auth";
 import { formatDate } from "./File";
 import { notification } from "antd";
 
@@ -30,6 +30,7 @@ export const Chat = () => {
     const [message, setMessage] = useState("")
     const [historyMessage, setHistoryMessage] = useState([])
     const [apiHistoryMessage, contextHolderHistoryMessage] = notification.useNotification();
+    const { logout } = UseAuth()
 
 
     useEffect(() => {
@@ -48,6 +49,9 @@ export const Chat = () => {
                     description:
                         JSON.stringify(e.response.data),
                 })
+                if (e.status == 400) {
+                    logout()
+                }
             }
         }
 
@@ -91,7 +95,9 @@ export const Chat = () => {
                 description:
                     JSON.stringify(e.response.data),
             })
-
+            if (e.status == 400) {
+                logout()
+            }
         }
     }
 

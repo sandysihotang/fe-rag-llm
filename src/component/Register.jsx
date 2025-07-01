@@ -6,7 +6,7 @@ import { notification } from 'antd';
 export const Register = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const { login } = UseAuth()
+    const { login, logout } = UseAuth()
     const [api, contextHolder] = notification.useNotification();
 
     const navigate = useNavigate()
@@ -27,6 +27,9 @@ export const Register = () => {
                 description:
                     JSON.stringify(e.response.data),
             })
+            if (e.status == 400) {
+                logout()
+            }
         }
     }
 

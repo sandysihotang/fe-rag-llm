@@ -1,7 +1,7 @@
 import { Button, Card, Form, Input, Modal, Switch, Upload, message, notification } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import React, { useState } from 'react';
-import { AuthToken } from '../../../router/Auth';
+import { AuthToken, UseAuth } from '../../../router/Auth';
 import { API } from '../../../external/Axios';
 import TextArea from 'antd/es/input/TextArea';
 
@@ -26,6 +26,7 @@ const tailLayout = {
 const FormFile = ({ setLoadData, modalClose, notif }) => {
     const [file, setFile] = useState(null)
     const [api, contextHolder] = notification.useNotification();
+    const { logout } = UseAuth()
 
     const beforeUpload = (filedata) => {
         if (filedata.type !== 'application/pdf') {
@@ -72,6 +73,9 @@ const FormFile = ({ setLoadData, modalClose, notif }) => {
                 description:
                     JSON.stringify(e.response.data),
             })
+            if (e.status == 400) {
+                logout()
+            }
         }
     }
     return (
@@ -133,6 +137,9 @@ const Scraping = ({ setLoadData, modalClose, notif }) => {
                     description:
                         JSON.stringify(e.response.data),
                 })
+                if (e.status == 400) {
+                    logout()
+                }
             }
         }
 
@@ -180,6 +187,9 @@ const Scraping = ({ setLoadData, modalClose, notif }) => {
                 description:
                     JSON.stringify(e.response.data),
             })
+            if (e.status == 400) {
+                logout()
+            }
         }
     }
     return (

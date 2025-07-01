@@ -9,7 +9,7 @@ export const Login = () => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const { login } = UseAuth()
+    const { login, logout } = UseAuth()
     const [api, contextHolder] = notification.useNotification();
 
     const navigate = useNavigate()
@@ -30,6 +30,9 @@ export const Login = () => {
                 description:
                     JSON.stringify(e.response.data),
             })
+            if (e.status == 400) {
+                logout()
+            }
         }
     }
 
